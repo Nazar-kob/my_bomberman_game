@@ -36,7 +36,7 @@ class Player(EngineMovingSprite):
         self.engine.add_to_group(self, "player")
         self.engine.add_to_group(self, "flammable")
         self.surf = pygame.image.load(
-            "images/player_front.png"
+            "app/images/player_front.png"
         ).convert_alpha()
         self.rect = self.surf.get_rect()
         self.plant_bomb_cooldown = 0
@@ -62,28 +62,28 @@ class Player(EngineMovingSprite):
             self.rect.move_ip(0, -self.speed)
             self.move_collision_out(0, -self.speed)
             self.surf = pygame.image.load(
-                "images/player_back.png"
+                "app/images/player_back.png"
             ).convert_alpha()
 
         if pressed_keys[K_DOWN]:
             self.rect.move_ip(0, self.speed)
             self.move_collision_out(0, self.speed)
             self.surf = pygame.image.load(
-                "images/player_front.png"
+                "app/images/player_front.png"
             ).convert_alpha()
 
         if pressed_keys[K_LEFT]:
             self.rect.move_ip(-self.speed, 0)
             self.move_collision_out(-self.speed, 0)
             self.surf = pygame.image.load(
-                "images/player_left.png"
+                "app/images/player_left.png"
             ).convert_alpha()
 
         if pressed_keys[K_RIGHT]:
             self.rect.move_ip(self.speed, 0)
             self.move_collision_out(self.speed, 0)
             self.surf = pygame.image.load(
-                "images/player_right.png"
+                "app/images/player_right.png"
             ).convert_alpha()
 
         if self.rect.left < 0:
@@ -124,7 +124,7 @@ class Wall(EngineSprite):
         super().__init__()
         self.engine.add_to_group(self, "walls")
         self.surf = pygame.image.load(
-            "images/wall.png").convert_alpha()
+            "app/images/wall.png").convert_alpha()
         self.rect = self.surf.get_rect(center=center_pos)
 
     @classmethod
@@ -154,7 +154,7 @@ class Bomb(EngineSprite):
         super().__init__()
         self.engine.add_to_group(self, "bombs")
         self.surf = pygame.image.load(
-            "images/bomb.png").convert_alpha()
+            "app/images/bomb.png").convert_alpha()
         self.lifetime = BOMB_TIMER
         self.explode_range = BOMB_EXPLODE_RANGE
         self.rect = self.surf.get_rect(
@@ -224,7 +224,7 @@ class Fire(EngineSprite):
         self.width = DEFAULT_OBJ_SIZE
         self.height = DEFAULT_OBJ_SIZE
         self.surf = pygame.image.load(
-            "images/explosion_1.png").convert_alpha()
+            "app/images/explosion_1.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=(center_pos[0], center_pos[1]))
         self.lifetime = FIRE_LIFETIME
@@ -236,11 +236,11 @@ class Fire(EngineSprite):
             self.kill()
         elif self.lifetime < 3:
             self.surf = pygame.image.load(
-                "images/explosion_3.png"
+                "app/images/explosion_3.png"
             ).convert_alpha()
         elif self.lifetime < 6:
             self.surf = pygame.image.load(
-                "images/explosion_2.png"
+                "app/images/explosion_2.png"
             ).convert_alpha()
 
         # kill all flammable units that touch the fire
@@ -324,16 +324,16 @@ class EnemySpider(Enemy):
         super().__init__()
         self.engine.add_to_group(self, "flammable")
         self.image_front = pygame.image.load(
-            "images/spider_front.png"
+            "app/images/spider_front.png"
         ).convert_alpha()
         self.image_back = pygame.image.load(
-            "images/spider_back.png"
+            "app/images/spider_back.png"
         ).convert_alpha()
         self.image_left = pygame.image.load(
-            "images/spider_left.png"
+            "app/images/spider_left.png"
         ).convert_alpha()
         self.image_right = pygame.image.load(
-            "images/spider_right.png"
+            "app/images/spider_right.png"
         ).convert_alpha()
         self.surf = self.image_front
         self.position = self.generate_position()
@@ -382,16 +382,16 @@ class EnemyBoar(Enemy):
     def __init__(self):
         super().__init__()
         self.image_front = pygame.image.load(
-            "images/boar_front.png"
+            "app/images/boar_front.png"
         ).convert_alpha()
         self.image_back = pygame.image.load(
-            "images/boar_back.png"
+            "app/images/boar_back.png"
         ).convert_alpha()
         self.image_left = pygame.image.load(
-            "images/boar_left.png"
+            "app/images/boar_left.png"
         ).convert_alpha()
         self.image_right = pygame.image.load(
-            "images/boar_right.png"
+            "app/images/boar_right.png"
         ).convert_alpha()
         self.surf = self.image_front
         self.position = self.generate_position()
@@ -460,7 +460,7 @@ class Rock(EngineSprite):
         self.engine.add_to_group(self, "rocks")
         self.engine.add_to_group(self, "flammable")
         self.surf = pygame.image.load(
-            "images/rock.png").convert_alpha()
+            "app/images/rock.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=self.get_self_center(owner_center)
         )
@@ -484,10 +484,10 @@ class EnemyBird(Enemy):
     def __init__(self):
         super().__init__()
         self.image_left = pygame.image.load(
-            "images/bird_left.png"
+            "app/images/bird_left.png"
         ).convert_alpha()
         self.image_right = pygame.image.load(
-            "images/bird_right.png"
+            "app/images/bird_right.png"
         ).convert_alpha()
         self.surf = self.image_left
         self.position = self.generate_position()
@@ -553,7 +553,7 @@ class Effect(EngineMovingSprite):
         super().__init__()
         self.engine.add_to_group(self, "effects")
         self.surf = pygame.image.load(
-            "images/healing_effect.png").convert_alpha()
+            "app/images/healing_effect.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=self.get_self_center(owner_center)
         )
@@ -584,7 +584,7 @@ class EffectHeal(Effect):
     def __init__(self, owner_center):
         super().__init__(owner_center)
         self.surf = pygame.image.load(
-            "images/healing_effect.png").convert_alpha()
+            "app/images/healing_effect.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=self.get_self_center(owner_center)
         )
@@ -603,7 +603,7 @@ class EffectFast(Effect):
     def __init__(self, owner_center):
         super().__init__(owner_center)
         self.surf = pygame.image.load(
-            "images/fast_effect.png").convert_alpha()
+            "app/images/fast_effect.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=self.get_self_center(owner_center)
         )
@@ -622,7 +622,7 @@ class EffectSlow(Effect):
     def __init__(self, owner_center):
         super().__init__(owner_center)
         self.surf = pygame.image.load(
-            "images/slow_effect.png").convert_alpha()
+            "app/images/slow_effect.png").convert_alpha()
         self.rect = self.surf.get_rect(
             center=self.get_self_center(owner_center)
         )

@@ -6,9 +6,9 @@ Simple bomberman game with dynamic bombing planting and enemies spawning.
 
 ```Shell
 git clone https://github.com/Nazar-kob/my_bomberman_game-.git
-cd my_bomberman_game
+cd my_bomberman_game-
 python3 -m venv venv
-venv venv\Scripts\activate
+venv\Scripts\activate
 pip install -r requirements.txt
 python app/main.py
 ```
